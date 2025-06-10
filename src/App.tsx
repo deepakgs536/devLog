@@ -1,4 +1,3 @@
-import AchievementsSection from "./components/AchievementsSection";
 import IndexPage from "./pages";
 
 function App() {

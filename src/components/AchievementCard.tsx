@@ -1,6 +1,4 @@
-import { useState } from "react";
-import { motion } from "framer-motion";
-import { Button, Card, CardFooter, Image } from "@heroui/react";
+import { Card, CardFooter, Image } from "@heroui/react";
 
 type AchievementCardProps = {
   title?: string;

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import DownArrowIcon from "@/assets/downArrowIcon";
-import { Input, Textarea, Button } from "@nextui-org/react";
+import { Input, Textarea, Button } from "@heroui/react";
 
 export const ContactSection = () => {
   const [formData, setFormData] = useState({

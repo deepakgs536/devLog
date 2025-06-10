@@ -1,5 +1,4 @@
 import * as React from "react";
-import { PiDropSimpleBold } from "react-icons/pi";
 
 interface SvgIconProps extends React.SVGProps<SVGSVGElement> {
   color?: string;

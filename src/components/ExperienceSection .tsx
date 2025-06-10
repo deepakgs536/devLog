@@ -1,5 +1,5 @@
 // ExperienceSection.tsx
-import React, { useState } from "react";
+import { useState } from "react";
 import { TabsComponent } from "./tabsComponent";
 import { InfoCard } from "./infoCard";
 import { SkillCard } from "./skillCard";

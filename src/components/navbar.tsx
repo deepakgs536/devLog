@@ -7,7 +7,6 @@ import MessageIconOutlined from "@/assets/messageIconOutlined";
 import ProIconFilled from "@/assets/proIconFilled";
 import ProIconOutlined from "@/assets/proIconOutlined";
 
-import { useState } from "react";
 import { Button } from "@heroui/button";
 import { Tooltip } from "@heroui/react";
 import BulbIconFilled from "@/assets/bulbIconFilled";
