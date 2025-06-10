@@ -1,0 +1,284 @@
+  <svg width="1200" height="800" viewBox="0 0 1200 800" {...props} xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    {/* <!-- Background gradient --> */}
+    <radialGradient id="bgGradient" cx="50%" cy="50%" r="70%">
+        <stop offset="0%" style={{ stopColor: "#2D1B69", stopOpacity: 1 }} />
+        <stop offset="30%" style={{ stopColor: "#1E1B3A", stopOpacity: 1 }} />
+        <stop offset="70%" style={{ stopColor: "#0F172A", stopOpacity: 1 }} />
+        <stop offset="100%" style={{ stopColor: "#000000", stopOpacity: 1 }} />
+    </radialGradient>
+
+    
+    {/* <!-- Connection line gradient --> */}
+    <linearGradient id="connectionGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style={{stopColor:"#FF8C42",stopOpacity:0.3}} />
+      <stop offset="50%" style={{stopColor:"#FF6B35",stopOpacity:0.7}} />
+      <stop offset="100%" style={{stopColor:"#FF8C42",stopOpacity:0.3}} />
+    </linearGradient>
+    
+    {/* <!-- Active connection gradient --> */}
+    <linearGradient id="activeConnection" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style={{stopColor:"#FFB366",stopOpacity:0.8}} />
+      <stop offset="50%" style={{stopColor:"#FF8C42",stopOpacity:1}} />
+      <stop offset="100%" style={{stopColor:"#FFB366",stopOpacity:0.8}} />
+    </linearGradient>
+    
+    {/* <!-- Node glow effect --> */}
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="4" result="coloredBlur"/>
+      <feMerge> 
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    
+    {/* <!-- Stronger glow for active nodes --> */}
+    <filter id="strongGlow">
+      <feGaussianBlur stdDeviation="6" result="coloredBlur"/>
+      <feMerge> 
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    
+    {/* <!-- Connection pulse animation --> */}
+    <filter id="pulse">
+      <feGaussianBlur stdDeviation="2" result="coloredBlur"/>
+      <feMerge> 
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+  
+  {/* <!-- Background --> */}
+  <rect width="1200" height="800" fill="url(#bgGradient)"/>
+  
+  {/* <!-- Background grid pattern --> */}
+  <g stroke="#374151" stroke-width="0.5" opacity="0.1">
+    <defs>
+      <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+        <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#374151" stroke-width="0.5"/>
+      </pattern>
+    </defs>
+    <rect width="1200" height="800" fill="url(#grid)" />
+  </g>
+  
+  {/* <!-- Network connections (regular lines) --> */}
+  <g stroke="url(#connectionGradient)" stroke-width="1.5" opacity="0.6">
+    {/* <!-- Top section connections --> */}
+    <line x1="120" y1="150" x2="280" y2="180"/>
+    <line x1="280" y1="180" x2="450" y2="120"/>
+    <line x1="450" y1="120" x2="620" y2="160"/>
+    <line x1="620" y1="160" x2="800" y2="140"/>
+    <line x1="800" y1="140" x2="950" y2="180"/>
+    <line x1="950" y1="180" x2="1080" y2="150"/>
+    
+    {/* <!-- Middle section connections --> */}
+    <line x1="80" y1="320" x2="240" y2="350"/>
+    <line x1="240" y1="350" x2="400" y2="300"/>
+    <line x1="400" y1="300" x2="580" y2="330"/>
+    <line x1="580" y1="330" x2="750" y2="320"/>
+    <line x1="750" y1="320" x2="920" y2="350"/>
+    <line x1="920" y1="350" x2="1100" y2="300"/>
+    
+    {/* <!-- Lower section connections --> */}
+    <line x1="150" y1="500" x2="320" y2="520"/>
+    <line x1="320" y1="520" x2="480" y2="480"/>
+    <line x1="480" y1="480" x2="650" y2="510"/>
+    <line x1="650" y1="510" x2="820" y2="500"/>
+    <line x1="820" y1="500" x2="980" y2="520"/>
+    
+    {/* <!-- Bottom section connections --> */}
+    <line x1="100" y1="650" x2="270" y2="680"/>
+    <line x1="270" y1="680" x2="440" y2="640"/>
+    <line x1="440" y1="640" x2="610" y2="670"/>
+    <line x1="610" y1="670" x2="780" y2="650"/>
+    <line x1="780" y1="650" x2="950" y2="680"/>
+    <line x1="950" y1="680" x2="1120" y2="640"/>
+    
+    {/* <!-- Vertical connections --> */}
+    <line x1="120" y1="150" x2="80" y2="320"/>
+    <line x1="280" y1="180" x2="240" y2="350"/>
+    <line x1="450" y1="120" x2="400" y2="300"/>
+    <line x1="620" y1="160" x2="580" y2="330"/>
+    <line x1="800" y1="140" x2="750" y2="320"/>
+    <line x1="950" y1="180" x2="920" y2="350"/>
+    
+    <line x1="240" y1="350" x2="150" y2="500"/>
+    <line x1="400" y1="300" x2="320" y2="520"/>
+    <line x1="580" y1="330" x2="480" y2="480"/>
+    <line x1="750" y1="320" x2="650" y2="510"/>
+    <line x1="920" y1="350" x2="820" y2="500"/>
+    
+    <line x1="320" y1="520" x2="270" y2="680"/>
+    <line x1="480" y1="480" x2="440" y2="640"/>
+    <line x1="650" y1="510" x2="610" y2="670"/>
+    <line x1="820" y1="500" x2="780" y2="650"/>
+    
+    {/* <!-- Diagonal connections --> */}
+    <line x1="280" y1="180" x2="400" y2="300"/>
+    <line x1="450" y1="120" x2="580" y2="330"/>
+    <line x1="620" y1="160" x2="750" y2="320"/>
+    <line x1="800" y1="140" x2="920" y2="350"/>
+    
+    <line x1="150" y1="500" x2="440" y2="640"/>
+    <line x1="320" y1="520" x2="610" y2="670"/>
+    <line x1="480" y1="480" x2="780" y2="650"/>
+    <line x1="650" y1="510" x2="950" y2="680"/>
+    
+    {/* <!-- Additional cross connections --> */}
+    <line x1="120" y1="150" x2="450" y2="120"/>
+    <line x1="800" y1="140" x2="1080" y2="150"/>
+    <line x1="80" y1="320" x2="580" y2="330"/>
+    <line x1="750" y1="320" x2="1100" y2="300"/>
+    <line x1="150" y1="500" x2="650" y2="510"/>
+    <line x1="820" y1="500" x2="100" y2="650"/>
+    <line x1="440" y1="640" x2="950" y2="680"/>
+  </g>
+  
+  {/* <!-- Active/highlighted connections --> */}
+  <g stroke="url(#activeConnection)" stroke-width="2.5" opacity="0.9" filter="url(#pulse)">
+    <line x1="450" y1="120" x2="580" y2="330">
+      <animate attributeName="opacity" values="0.9;0.4;0.9" dur="2s" repeatCount="indefinite"/>
+    </line>
+    <line x1="240" y1="350" x2="650" y2="510">
+      <animate attributeName="opacity" values="0.4;0.9;0.4" dur="3s" repeatCount="indefinite"/>
+    </line>
+    <line x1="800" y1="140" x2="320" y2="520">
+      <animate attributeName="opacity" values="0.9;0.4;0.9" dur="2.5s" repeatCount="indefinite"/>
+    </line>
+  </g>
+  
+  {/* <!-- Data flow particles --> */}
+  <g fill="#FFB366" opacity="0.8">
+    <circle cx="0" cy="0" r="2">
+      <animateMotion dur="4s" repeatCount="indefinite">
+        <path d="M 120,150 Q 200,100 450,120 Q 550,150 580,330 Q 600,400 650,510"/>
+      </animateMotion>
+    </circle>
+    <circle cx="0" cy="0" r="1.5">
+      <animateMotion dur="3s" repeatCount="indefinite">
+        <path d="M 800,140 Q 600,200 400,300 Q 300,400 320,520 Q 300,600 270,680"/>
+      </animateMotion>
+    </circle>
+    <circle cx="0" cy="0" r="2">
+      <animateMotion dur="5s" repeatCount="indefinite">
+        <path d="M 1080,150 Q 900,200 750,320 Q 650,400 480,480 Q 300,550 100,650"/>
+      </animateMotion>
+    </circle>
+  </g>
+  
+  {/* <!-- Network nodes (main nodes) --> */}
+  <g filter="url(#glow)">
+    {/* <!-- Top row nodes --> */}
+    <circle cx="120" cy="150" r="5" fill="#E53E3E" opacity="0.9">
+      <animate attributeName="r" values="5;7;5" dur="3s" repeatCount="indefinite"/>
+    </circle>
+    <circle cx="280" cy="180" r="4" fill="#DD6B20" opacity="0.8"/>
+    <circle cx="450" cy="120" r="6" fill="#E53E3E" opacity="0.9" filter="url(#strongGlow)">
+      <animate attributeName="r" values="6;8;6" dur="2s" repeatCount="indefinite"/>
+    </circle>
+    <circle cx="620" cy="160" r="4" fill="#DD6B20" opacity="0.8"/>
+    <circle cx="800" cy="140" r="5" fill="#E53E3E" opacity="0.9">
+      <animate attributeName="r" values="5;7;5" dur="2.5s" repeatCount="indefinite"/>
+    </circle>
+    <circle cx="950" cy="180" r="4" fill="#DD6B20" opacity="0.8"/>
+    <circle cx="1080" cy="150" r="4" fill="#DD6B20" opacity="0.8"/>
+    
+    {/* <!-- Middle row nodes --> */}
+    <circle cx="80" cy="320" r="4" fill="#DD6B20" opacity="0.8"/>
+    <circle cx="240" cy="350" r="5" fill="#E53E3E" opacity="0.9" filter="url(#strongGlow)">
+      <animate attributeName="r" values="5;7;5" dur="3.5s" repeatCount="indefinite"/>
+    </circle>
+    <circle cx="400" cy="300" r="4" fill="#DD6B20" opacity="0.8"/>
+    <circle cx="580" cy="330" r="6" fill="#E53E3E" opacity="0.9">
+      <animate attributeName="r" values="6;8;6" dur="2.8s" repeatCount="indefinite"/>
+    </circle>
+    <circle cx="750" cy="320" r="4" fill="#DD6B20" opacity="0.8"/>
+    <circle cx="920" cy="350" r="5" fill="#E53E3E" opacity="0.9"/>
+    <circle cx="1100" cy="300" r="4" fill="#DD6B20" opacity="0.8"/>
+    
+    {/* <!-- Lower row nodes --> */}
+    <circle cx="150" cy="500" r="4" fill="#DD6B20" opacity="0.8"/>
+    <circle cx="320" cy="520" r="5" fill="#E53E3E" opacity="0.9">
+      <animate attributeName="r" values="5;7;5" dur="4s" repeatCount="indefinite"/>
+    </circle>
+    <circle cx="480" cy="480" r="4" fill="#DD6B20" opacity="0.8"/>
+    <circle cx="650" cy="510" r="6" fill="#E53E3E" opacity="0.9" filter="url(#strongGlow)">
+      <animate attributeName="r" values="6;8;6" dur="3s" repeatCount="indefinite"/>
+    </circle>
+    <circle cx="820" cy="500" r="4" fill="#DD6B20" opacity="0.8"/>
+    <circle cx="980" cy="520" r="5" fill="#E53E3E" opacity="0.9"/>
+    
+    {/* <!-- Bottom row nodes --> */}
+    <circle cx="100" cy="650" r="4" fill="#DD6B20" opacity="0.8"/>
+    <circle cx="270" cy="680" r="4" fill="#DD6B20" opacity="0.8"/>
+    <circle cx="440" cy="640" r="5" fill="#E53E3E" opacity="0.9"/>
+    <circle cx="610" cy="670" r="4" fill="#DD6B20" opacity="0.8"/>
+    <circle cx="780" cy="650" r="5" fill="#E53E3E" opacity="0.9">
+      <animate attributeName="r" values="5;7;5" dur="3.2s" repeatCount="indefinite"/>
+    </circle>
+    <circle cx="950" cy="680" r="4" fill="#DD6B20" opacity="0.8"/>
+    <circle cx="1120" cy="640" r="4" fill="#DD6B20" opacity="0.8"/>
+  </g>
+  
+  {/* <!-- Additional scattered nodes for more density --> */}
+  <g filter="url(#glow)">
+    <circle cx="180" cy="220" r="3" fill="#FF8C42" opacity="0.6"/>
+    <circle cx="350" cy="240" r="2" fill="#FFB366" opacity="0.5"/>
+    <circle cx="520" cy="200" r="3" fill="#FF8C42" opacity="0.6"/>
+    <circle cx="690" cy="230" r="2" fill="#FFB366" opacity="0.5"/>
+    <circle cx="850" cy="210" r="3" fill="#FF8C42" opacity="0.6"/>
+    <circle cx="1020" cy="250" r="2" fill="#FFB366" opacity="0.5"/>
+    
+    <circle cx="160" cy="400" r="3" fill="#FF8C42" opacity="0.6"/>
+    <circle cx="330" cy="420" r="2" fill="#FFB366" opacity="0.5"/>
+    <circle cx="500" cy="380" r="3" fill="#FF8C42" opacity="0.6"/>
+    <circle cx="670" cy="410" r="2" fill="#FFB366" opacity="0.5"/>
+    <circle cx="840" cy="390" r="3" fill="#FF8C42" opacity="0.6"/>
+    <circle cx="1010" cy="430" r="2" fill="#FFB366" opacity="0.5"/>
+    
+    <circle cx="200" cy="580" r="3" fill="#FF8C42" opacity="0.6"/>
+    <circle cx="370" cy="600" r="2" fill="#FFB366" opacity="0.5"/>
+    <circle cx="540" cy="560" r="3" fill="#FF8C42" opacity="0.6"/>
+    <circle cx="710" cy="590" r="2" fill="#FFB366" opacity="0.5"/>
+    <circle cx="880" cy="570" r="3" fill="#FF8C42" opacity="0.6"/>
+    <circle cx="1050" cy="610" r="2" fill="#FFB366" opacity="0.5"/>
+    
+    {/* <!-- Extra micro nodes --> */}
+    <circle cx="90" cy="250" r="1.5" fill="#FFD4A3" opacity="0.4"/>
+    <circle cx="220" cy="130" r="1.5" fill="#FFD4A3" opacity="0.4"/>
+    <circle cx="380" cy="170" r="1.5" fill="#FFD4A3" opacity="0.4"/>
+    <circle cx="550" cy="250" r="1.5" fill="#FFD4A3" opacity="0.4"/>
+    <circle cx="720" cy="180" r="1.5" fill="#FFD4A3" opacity="0.4"/>
+    <circle cx="890" cy="270" r="1.5" fill="#FFD4A3" opacity="0.4"/>
+    
+    <circle cx="110" cy="420" r="1.5" fill="#FFD4A3" opacity="0.4"/>
+    <circle cx="280" cy="480" r="1.5" fill="#FFD4A3" opacity="0.4"/>
+    <circle cx="450" cy="530" r="1.5" fill="#FFD4A3" opacity="0.4"/>
+    <circle cx="620" cy="450" r="1.5" fill="#FFD4A3" opacity="0.4"/>
+    <circle cx="790" cy="470" r="1.5" fill="#FFD4A3" opacity="0.4"/>
+    <circle cx="960" cy="440" r="1.5" fill="#FFD4A3" opacity="0.4"/>
+  </g>
+  
+  {/* <!-- Central hub node --> */}
+  <g filter="url(#strongGlow)">
+    <circle cx="600" cy="400" r="8" fill="#FF4500" opacity="0.95">
+      <animate attributeName="r" values="8;12;8" dur="2s" repeatCount="indefinite"/>
+      <animate attributeName="opacity" values="0.95;0.7;0.95" dur="2s" repeatCount="indefinite"/>
+    </circle>
+    <circle cx="600" cy="400" r="4" fill="#FFD700" opacity="0.8"/>
+  </g>
+  
+  {/* <!-- Hub connections --> */}
+  <g stroke="url(#activeConnection)" stroke-width="2" opacity="0.7">
+    <line x1="600" y1="400" x2="450" y2="120"/>
+    <line x1="600" y1="400" x2="800" y2="140"/>
+    <line x1="600" y1="400" x2="240" y2="350"/>
+    <line x1="600" y1="400" x2="920" y2="350"/>
+    <line x1="600" y1="400" x2="320" y2="520"/>
+    <line x1="600" y1="400" x2="650" y2="510"/>
+    <line x1="600" y1="400" x2="780" y2="650"/>
+  </g>
+</svg>
