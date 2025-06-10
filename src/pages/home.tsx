@@ -42,7 +42,7 @@ export const Home = ({ onNavChange = () => {} }: HomeProps) => {
       alt="Profile"
       width={500}
       height={400}
-      className="absolute -bottom-[6px] md:-bottom-[5px] w-[300px] md:w-[450px] md:h-[450px]"
+      className="absolute -bottom-[6px] md:-bottom-[5px] w-[300px] md:w-[450px] md:h-[500px]"
     />
   </div>
 </div>
